@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_application/category/category_details.dart';
 import 'package:news_application/home/home_screen.dart';
 import 'package:news_application/my_theme.dart';
 
@@ -15,10 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: CategoryDetails.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
-        CategoryDetails.routeName: (context) => CategoryDetails(),
       },
       theme: MyTheme.lightTheme,
     );

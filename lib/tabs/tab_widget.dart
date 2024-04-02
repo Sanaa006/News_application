@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:news_application/category/tab_item.dart';
 import 'package:news_application/model/SourcesResponse.dart';
 import 'package:news_application/news/news_widget.dart';
+import 'package:news_application/tabs/tab_item.dart';
 
 class TabWidget extends StatefulWidget {
   List<Source>? listSources;
@@ -27,6 +27,8 @@ class _TabWidgetState extends State<TabWidget> {
                 setState(() {});
               },
               isScrollable: true,
+              enableFeedback: false,
+              dividerColor: Colors.transparent,
               indicatorColor: Colors.transparent,
               tabs: widget.listSources!
                   .map((source) => TabItem(

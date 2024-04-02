@@ -17,6 +17,7 @@ class MyTheme {
     primaryColor: primaryColor,
     appBarTheme: AppBarTheme(
       backgroundColor: primaryColor,
+      iconTheme: IconThemeData(color: whiteColor),
       centerTitle: true,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

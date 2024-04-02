@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:news_application/category/category_details.dart';
+import 'package:news_application/category/category_fragment.dart';
+import 'package:news_application/drawer/home_drawer.dart';
+import 'package:news_application/model/category_model.dart';
 import 'package:news_application/my_theme.dart';
+import 'package:news_application/settings/settings.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   static const String routeName = "Home_Screen";
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -19,16 +29,55 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-              "News App",
+              index == 1
+                  ? "Settings"
+                  : (selectedCategory == null
+                      ? "News App"
+                      : selectedCategory!.title),
               style: Theme.of(context)
                   .textTheme
                   .titleMedium
                   ?.copyWith(color: Colors.white),
             ),
           ),
+          drawer: Drawer(
+            child: HomeDrawer(
+              NavigatToCatigoryFragment: NavigatToCatigoryFragment,
+              NavigatToSetting: NavigatToSetting,
+            ),
+          ),
+          body: index == 1
+              ? Settings()
+              : (selectedCategory == null
+                  ? CategoryFragment(
+                      onCatgoryclick: onCatgoryclick,
+                    )
+                  : CategoryDetails(
+                      caterory: selectedCategory!,
+                    )),
         ),
       ],
     );
+  }
+
+  CategoryModel? selectedCategory;
+
+  void onCatgoryclick(CategoryModel Newcategory) {
+    selectedCategory = Newcategory;
+    setState(() {});
+  }
+
+  int index = 0;
+
+  void NavigatToCatigoryFragment() {
+    index = 0;
+    selectedCategory = null;
+    setState(() {});
+  }
+
+  void NavigatToSetting() {
+    index = 1;
+    setState(() {});
   }
 }
 
