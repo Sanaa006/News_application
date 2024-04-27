@@ -16,6 +16,7 @@ class MyTheme {
   static ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
     appBarTheme: AppBarTheme(
+      toolbarHeight: 60,
       backgroundColor: primaryColor,
       iconTheme: IconThemeData(color: whiteColor),
       centerTitle: true,

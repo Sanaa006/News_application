@@ -35,4 +35,20 @@ class ApiManager {
       throw (e);
     }
   }
+
+  static Future<NewsResponse?>? getNewsForSearch(String keywordSearch) async {
+    if (keywordSearch.isEmpty) {
+      return null;
+    }
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.newsApi,
+        {"apiKey": "f61c64c98c894852afb43e35b5e9bf4d", 'q': keywordSearch});
+    try {
+      var responses = await http.get(url);
+      var badyResponse = responses.body;
+      var json = jsonDecode(badyResponse);
+      return NewsResponse.fromJson(json);
+    } catch (e) {
+      throw (e);
+    }
+  }
 }
