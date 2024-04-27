@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_application/api/api_manager.dart';
 import 'package:news_application/model/NewsResponse.dart';
 import 'package:news_application/model/SourcesResponse.dart';
+import 'package:news_application/news/news_details_screen.dart';
 import 'package:news_application/news/news_item.dart';
 
 class NewsWidget extends StatefulWidget {
@@ -62,8 +63,14 @@ class _NewsWidgetState extends State<NewsWidget> {
         var listNews = snapshot.data?.articles ?? [];
         return ListView.builder(
           itemBuilder: (context, index) {
-            return NewsItem(
-              news: listNews[index],
+            return InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, NewsDetailsScreen.routeName,
+                    arguments: listNews[index]);
+              },
+              child: NewsItem(
+                news: listNews[index],
+              ),
             );
           },
           itemCount: listNews.length,
