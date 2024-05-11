@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:news_application/my_theme.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -20,8 +21,9 @@ class NewsItem extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 10),
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  news.urlToImage ?? " ",
+                child: Image.network(news.urlToImage ?? " ",
+
+
                   width: double.infinity,
                   fit: BoxFit.fill,
                   height: MediaQuery.of(context).size.height * 0.35,

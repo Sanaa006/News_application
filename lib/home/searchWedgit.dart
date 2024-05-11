@@ -23,19 +23,27 @@ class customSearchDelegate extends SearchDelegate {
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
+
+      IconButton(
+          onPressed: () {
+            showResults(context);
+          },
+          icon: Icon(
+            Icons.search,
+          )),
       IconButton(
           onPressed: () {
             query = "";
           },
           icon: Icon(
             Icons.close,
-          ))
+          )),
     ];
   }
 
   @override
   Widget? buildLeading(BuildContext context) {
-    return null;
+    return  null;
   }
 
   @override
