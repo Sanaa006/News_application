@@ -15,10 +15,24 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
+  late ScrollController scrollController;
+  int page=1;
+  @override
+  void initState(){
+    super.initState();
+    scrollController = ScrollController();
+
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    scrollController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<NewsResponse>(
-      future: ApiManager.getNewsBySources(widget.source.id ?? ""),
+      future: ApiManager.getNewsBySources(widget.source.id ?? "",page),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
@@ -34,7 +48,7 @@ class _NewsWidgetState extends State<NewsWidget> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getNewsBySources(widget.source.id ?? "");
+                  ApiManager.getNewsBySources(widget.source.id ?? "",page);
                   setState(() {});
                 },
                 child: Text("Try again"),
@@ -52,7 +66,7 @@ class _NewsWidgetState extends State<NewsWidget> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  ApiManager.getNewsBySources(widget.source.id ?? "");
+                  ApiManager.getNewsBySources(widget.source.id ?? "",page);
                   setState(() {});
                 },
                 child: Text("Try again"),
@@ -62,6 +76,7 @@ class _NewsWidgetState extends State<NewsWidget> {
         }
         var listNews = snapshot.data?.articles ?? [];
         return ListView.builder(
+          controller: scrollController,
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
